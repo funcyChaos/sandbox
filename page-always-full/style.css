@@ -1,0 +1,22 @@
+body{
+    margin: 0;
+    header{
+        background-color: gray;
+        border: pink 1px solid;
+        box-sizing: border-box;
+        height: 100px;
+    }
+    main{
+        background-color: gray;
+        box-sizing: border-box;
+        border: solid green 1px;
+        min-height: calc(100dvh - 200px);
+    }
+
+    footer{
+        box-sizing: border-box;
+        border: blue solid 1px;
+        height: 100px;
+        background-color: gray;
+    }
+}
