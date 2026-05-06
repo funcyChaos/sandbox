@@ -1,0 +1,17 @@
+{
+	"editor.tabSize": 4,
+	"saveAndRun": {
+		"commands": [{
+			"match": "\\.scss",
+			"cmd": "sass ./sass/style.scss ./style.css",
+			"silent": true
+		}]
+	},
+		"emmet.includeLanguages": {
+			"django-html": "html",
+		},
+	"files.associations": {
+		"*.html": "html"
+	},
+	"liveServer.settings.port": 5501,
+}
