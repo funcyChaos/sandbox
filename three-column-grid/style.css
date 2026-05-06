@@ -17,27 +17,28 @@ main{
     @media(max-width:400px){
         grid-template-columns: auto;
         grid-template-rows: 200px 200px;
-        grid-template-areas: "filter""content";
+        grid-template-areas: "filter" "content";
     }
     .filter{
         grid-area: filter;
         border: green dashed 2px;
-        min-height: 100px;
     }
     .content{
         grid-area: content;
         border: blue dashed 2px;
-        min-height: 100px;
     }
     .list{
         grid-area: list;
         border: red dashed 2px;
-        min-height: 100px;
-        min-width: 100px;
+        background-color: white;
+        box-sizing: border-box;
         transition: transform 0.1s ease;
         @media(max-width:400px){
+            height: 405px;
+            width: calc(100dvw - 16px);
             grid-area: unset;
             position: fixed;
+            z-index: 1000;
             right: 8px;
             transform: translateX(calc(100% + 8px));
         }
