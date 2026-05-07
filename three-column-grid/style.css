@@ -2,6 +2,7 @@ header{
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
+    height: 100px;
     .list-btn{
         display: none;
         @media(max-width: 400px){
@@ -10,22 +11,30 @@ header{
     }
 }
 main{
+    height: calc(100dvh - 116px);
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
     grid-template-areas: "filter content list";
     gap: 5px;
     @media(max-width:400px){
         grid-template-columns: auto;
-        grid-template-rows: 200px 200px;
+        grid-template-rows: 100px 1fr;
         grid-template-areas: "filter" "content";
     }
     .filter{
         grid-area: filter;
         border: green dashed 2px;
+        box-sizing: border-box;
     }
     .content{
         grid-area: content;
         border: blue dashed 2px;
+        box-sizing: border-box;
+        overflow-y: scroll;
+        .tall{
+            background-color: gray;
+            height: 200vh;
+        }
     }
     .list{
         grid-area: list;
@@ -34,7 +43,7 @@ main{
         box-sizing: border-box;
         transition: transform 0.1s ease;
         @media(max-width:400px){
-            height: 405px;
+            height: calc(100dvh - 116px);
             width: calc(100dvw - 16px);
             grid-area: unset;
             position: fixed;
