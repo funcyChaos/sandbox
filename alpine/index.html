@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>alpine</title>
+        <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+        <script src="index.js"></script>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body x-data>
+        <main>
+            <h1>alpine</h1>
+            <button
+                @click="$store.ui.showModal = !$store.ui.showModal"
+            >modal</button>
+            <div
+                class="modal"
+                x-show="$store.ui.showModal"
+                x-transition:enter="transition"
+                x-transition:enter-start="transparent"
+                x-transition:enter-end="opaque"
+                x-transition:leave="transition"
+                x-transition:leave-start="opaque"
+                x-transition:leave-end="transparent"
+            >
+                <h2>modal</h2>
+            </div>
+        </main>
+    </body>
+</html>

@@ -1,0 +1,9 @@
+.transition{
+    transition: opacity .2s ease;
+}
+.transparent{
+    opacity: 0;
+}
+.opaque{
+    opacity: 1;
+}
