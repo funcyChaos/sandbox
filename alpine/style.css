@@ -1,8 +1,11 @@
 .transition{
-    transition: opacity .2s ease;
+    transition:
+        transform .2s ease,
+        opacity .2s ease;
 }
 .transparent{
     opacity: 0;
+    transform: translateX(10px) scale(-0.9);
 }
 .opaque{
     opacity: 1;
