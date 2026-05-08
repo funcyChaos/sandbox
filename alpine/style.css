@@ -5,7 +5,7 @@
 }
 .transparent{
     opacity: 0;
-    transform: translateX(10px) scale(-0.9);
+    transform: translateY(-10px);
 }
 .opaque{
     opacity: 1;
