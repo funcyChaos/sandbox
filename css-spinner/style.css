@@ -1,10 +1,16 @@
 .loader{
-    border: 2px green dashed;
+    /* border: 2px #17177c solid; */
+    /* border-radius: 50%; */
+    /* border: 2px green dashed; */
     width: 150px;
     aspect-ratio: 1;
+    display: grid;
+    -webkit-mask: conic-gradient(from 22deg, #0003,#000);
+    mask: conic-gradient(from 22deg, #0003,#000);
+    animation: load 3s steps(8) infinite;
 }
 .loader, .loader::before{
-    --_g: linear-gradient(#17177c 0 0);
+    --_g: linear-gradient(#17177c 0 0) 50%;
     background:
         var(--_g) 50%/34% 8% space no-repeat,
         var(--_g) 50%/8% 34% no-repeat space;
@@ -12,4 +18,16 @@
 .loader::before{
     content: "";
     transform: rotate(45deg);
+}
+@keyframes load{
+    /* from{transform:rotate(0turn)} */
+    to{transform:rotate(1turn)}
+}
+
+.box{
+    width: 200px;
+    aspect-ratio: 1;
+    background: red;
+    -webkit-mask: conic-gradient(from 22deg, #0003,#000);
+    mask: conic-gradient(from 22deg, #0003,#000);
 }
