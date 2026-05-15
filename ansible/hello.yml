@@ -1,0 +1,17 @@
+- name: Remote Hello
+  hosts: servers
+  gather_facts: false
+
+  tasks:
+    - name: Show hostname
+      command: hostname
+      register: hostname_output
+    - name: Show current user
+      command: whoami
+      register: whoami_output
+    - name: Print hostname
+      debug:
+        var: hostname_output.stdout
+    - name: Print current user
+      debug:
+        var: whoami_output.stdout
