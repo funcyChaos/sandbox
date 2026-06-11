@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smooth Growing List</title>
+    <style>
+        .form {
+            height: 500px;
+            background-color: gray;
+        }
+
+        .results {
+            border: 2px blue dashed;
+            width: 200px;
+            /* Remove all complex grid/max-height rules here. */
+            /* The container will naturally expand smoothly because its children are expanding smoothly! */
+        }
+
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            overflow: hidden;
+        }
+
+        /* This runs automatically the microsecond a new <li> hits the DOM */
+        li {
+            overflow: hidden;
+            font-family: sans-serif;
+            padding: 0 10px; /* Kept padding on left/right so it doesn't break height math */
+            
+            /* Attach the keyframe animation */
+            animation: growItem 0.4s ease forwards;
+        }
+
+        /* The Magic Step: We animate max-height from 0 to a safe upper limit per item */
+        @keyframes growItem {
+            0% {
+                max-height: 0;
+                opacity: 0;
+                padding-top: 0;
+                padding-bottom: 0;
+            }
+            100% {
+                max-height: 40px; /* Set this slightly higher than your text height */
+                opacity: 1;
+                padding-top: 8px; /* Smoothly animate vertical padding too */
+                padding-bottom: 8px;
+            }
+        }
+    </style>
+    <script src="//unpkg.com/alpinejs" defer></script>
+</head>
+<body>
+    <div class="site" x-data="{ items: [] }">
+        <form action="" class="form">
+            <button @click.prevent="items.push({name:'More', id:Date.now()})">Add Item</button>
+            
+            <div class="results" x-show="items.length > 0">
+                <ul>
+                    <template x-for="item in items" :key="item.id">
+                        <li x-text="item.name"></li>
+                    </template>
+                </ul>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
