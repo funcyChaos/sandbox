@@ -22,6 +22,8 @@
         
 let isDragging = false;
 let offsetX, offsetY;
+const originalLeft = dragItem.offsetLeft
+const originalTop = dragItem.offsetTop
 
 // 1. Triggered when the user clicks down on the element
 dragItem.addEventListener('mousedown', (e) => {
@@ -47,8 +49,13 @@ document.addEventListener('mousemove', (e) => {
 
 // 3. Triggered when the user releases the mouse button
 document.addEventListener('mouseup', () => {
+    if(!isDragging)return
   isDragging = false;
+  dragItem.style.left = `${originalLeft}px`
+  dragItem.style.top = `${originalTop}px`
 });
+
+
 
         let startX = 0
         let startY = 0
