@@ -1,0 +1,32 @@
+body{margin:0;}
+
+.relative{
+    position: relative;
+    left: 40px;
+    top: 40px;
+
+    height: 500px;
+    width: 500px;
+    background-color: blue;
+
+    .absolute{
+        position: absolute;
+        /* top: 50%; */
+        bottom: 30px;
+        right: 30px;
+
+        height: 100px;
+        width: 100px;
+        background-color: green;
+    }
+
+    .absolute-red{
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+
+        height: 250px;
+        width: 250px;
+        background-color: red;
+    }
+}
