@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dragging</title>
+    <style>
+        .draggable{
+            height: 100px;
+            width: 100px;
+            background-color: blue;
+            position: absolute;
+            touch-action: none;
+            user-select: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="draggable"></div>
+    <script>
+        const dragItem = document.querySelector('.draggable')
+        
+let isDragging = false;
+let offsetX, offsetY;
+
+// 1. Triggered when the user clicks down on the element
+dragItem.addEventListener('mousedown', (e) => {
+  isDragging = true;
+  
+  // Calculate the cursor's offset distance from the element's top-left corner
+  offsetX = e.clientX - dragItem.getBoundingClientRect().left;
+  offsetY = e.clientY - dragItem.getBoundingClientRect().top;
+});
+
+// 2. Triggered when the user moves the mouse across the page
+document.addEventListener('mousemove', (e) => {
+  if (!isDragging) return; // Only move if mouse button is held down
+
+  // Calculate new position coordinates
+  const newX = e.clientX - offsetX;
+  const newY = e.clientY - offsetY;
+
+  // Apply new coordinates to the element's style
+  dragItem.style.left = `${newX}px`;
+  dragItem.style.top = `${newY}px`;
+});
+
+// 3. Triggered when the user releases the mouse button
+document.addEventListener('mouseup', () => {
+  isDragging = false;
+});
+
+        let startX = 0
+        let startY = 0
+        dragItem.addEventListener('touchstart', e=>{
+            const touch = e.touches[0]
+              startX = touch.clientX - dragItem.offsetLeft;
+  startY = touch.clientY - dragItem.offsetTop;
+        })
+        dragItem.addEventListener('touchmove', (e) => {
+  // Prevent unintended mobile viewport movement behaviors
+  e.preventDefault(); 
+  
+  const touch = e.touches[0];
+  
+  // Compute new placement layout metrics
+  let newX = touch.clientX - startX;
+  let newY = touch.clientY - startY;
+  
+  // Apply position coordinates to style markup
+  dragItem.style.left = `${newX}px`;
+  dragItem.style.top = `${newY}px`;
+});
+    </script>
+</body>
+</html>
