@@ -19,65 +19,55 @@
     <div class="draggable"></div>
     <script>
         const dragItem = document.querySelector('.draggable')
-        
-let isDragging = false;
-let offsetX, offsetY;
-const originalLeft = dragItem.offsetLeft
-const originalTop = dragItem.offsetTop
-
-// 1. Triggered when the user clicks down on the element
-dragItem.addEventListener('mousedown', (e) => {
-  isDragging = true;
-  
-  // Calculate the cursor's offset distance from the element's top-left corner
-  offsetX = e.clientX - dragItem.getBoundingClientRect().left;
-  offsetY = e.clientY - dragItem.getBoundingClientRect().top;
-});
-
-// 2. Triggered when the user moves the mouse across the page
-document.addEventListener('mousemove', (e) => {
-  if (!isDragging) return; // Only move if mouse button is held down
-
-  // Calculate new position coordinates
-  const newX = e.clientX - offsetX;
-  const newY = e.clientY - offsetY;
-
-  // Apply new coordinates to the element's style
-  dragItem.style.left = `${newX}px`;
-  dragItem.style.top = `${newY}px`;
-});
-
-// 3. Triggered when the user releases the mouse button
-document.addEventListener('mouseup', () => {
-    if(!isDragging)return
-  isDragging = false;
-  dragItem.style.left = `${originalLeft}px`
-  dragItem.style.top = `${originalTop}px`
-});
-
-
-
-        let startX = 0
-        let startY = 0
-        dragItem.addEventListener('touchstart', e=>{
-            const touch = e.touches[0]
-              startX = touch.clientX - dragItem.offsetLeft;
-  startY = touch.clientY - dragItem.offsetTop;
+        let isDragging = false;
+        let offsetX, offsetY;
+        const originalLeft = dragItem.offsetLeft
+        const originalTop = dragItem.offsetTop
+        dragItem.addEventListener('mousedown', e=>{
+          setDraggableStart(e.clientX, e.clientY)
         })
-        dragItem.addEventListener('touchmove', (e) => {
-  // Prevent unintended mobile viewport movement behaviors
-  e.preventDefault(); 
-  
-  const touch = e.touches[0];
-  
-  // Compute new placement layout metrics
-  let newX = touch.clientX - startX;
-  let newY = touch.clientY - startY;
-  
-  // Apply position coordinates to style markup
-  dragItem.style.left = `${newX}px`;
-  dragItem.style.top = `${newY}px`;
-});
+        document.addEventListener('mousemove', e=>{
+          setDraggablePosition(e.clientX, e.clientY)
+        })
+        document.addEventListener('mouseup', ()=>{
+          setDraggableOriginal()
+        })
+
+        dragItem.addEventListener('touchstart', e=>{
+          const touch = e.touches[0]
+          setDraggableStart(touch.clientX, touch.clientY)
+        })
+        dragItem.addEventListener('touchmove', e=>{
+          e.preventDefault(); 
+          const touch = e.touches[0]
+          setDraggablePosition(touch.clientX, touch.clientY)
+        })
+        dragItem.addEventListener('touchend', e=>{
+          setDraggableOriginal()
+        })
+
+        function setDraggableStart(x, y){
+          isDragging = true
+          offsetX = x - dragItem.getBoundingClientRect().left
+          offsetY = y - dragItem.getBoundingClientRect().top
+          setTimeout(()=>{
+            if(isDragging){
+              dragItem.style.backgroundColor = 'pink'
+            }
+          }, 120)
+        }
+        function setDraggablePosition(x, y){
+          if(!isDragging)return
+          dragItem.style.left   = `${x - offsetX}px`
+          dragItem.style.top    = `${y - offsetY}px`
+        }
+        function setDraggableOriginal(){
+          if(!isDragging)return
+          isDragging = false
+          dragItem.style.backgroundColor = 'blue'
+          dragItem.style.left   = `${originalLeft}px`
+          dragItem.style.top    = `${originalTop}px`
+        }
     </script>
 </body>
 </html>
