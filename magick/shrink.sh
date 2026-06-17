@@ -1,0 +1,1 @@
+magick input.jpg -quality 20 output.webp

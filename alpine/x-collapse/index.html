@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>max-height-transition</title>
+    <style>
+        .form{
+            height: 500px;
+            background-color: gray;
+            .results{
+                border: 2px blue dashed;
+                width: 200px;
+                overflow-y: scroll;
+                /* max-height: 0;
+                transition: max-height 1s ease; */
+            }
+        }
+    </style>
+    <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
+    <script src="//unpkg.com/alpinejs" defer></script>
+</head>
+<body>
+    <div 
+        class="site"
+        x-data="{open:false, items:[{name:'something',id:Date.now()}]}"
+    >
+        <form action="" class="form">
+            <button
+                type="button"
+                @click="items.push({name:'More', id:Date.now()});open=true;"
+            >
+                Add Item
+            </button>
+            <div
+                class="results"
+                x-show="open"
+                x-collapse
+            >
+                <ul>
+                    <template x-for="item in items" :key="item.id">
+                        <li x-text="item.name"></li>
+                    </template>
+                </ul>
+            </div>
+        </form>
+    </div>
+    <!-- <div class="site" x-data="{items: [{name:'something',id:Date.now()}]}">
+        <form action="" class="form">
+            <button @click.prevent="items.push({name:'More',id:Date.now()})">Add Item</button>
+            <div class="results">
+                <ul>
+                    <template x-for="item in items" :key="item.id">
+                        <li x-text="item.name"></li>
+                    </template>
+                </ul>
+            </div>
+        </form>
+    </div> -->
+</body>
+</html>
