@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pan drop down</title>
+</head>
+<style>
+    html, body{
+        min-height: 100dvh;
+    }
+    .box{
+        background-color: gray;
+        border: 1px green dashed;
+        width: 300px;
+        height: 50px;
+        position: relative;
+        box-sizing: border-box;
+    }
+    .menu{
+        background-color: blueviolet;
+        border: 1px blue dashed;
+        width: 200px;
+        height: 250px;
+        position: absolute;
+        top: 100%;
+        left: -1px;
+        margin: 0;
+        box-sizing: border-box;
+
+        opacity: 0;
+        backface-visibility: hidden;
+        transform: perspective(350px) rotateX(-90deg);
+        transform-origin: 50% 0%;
+        transition: all 150ms ease-in-out;
+    }
+    .box:hover > ul.menu{
+        visibility: visible;
+        opacity: 1;
+        transform: perspective(350px) rotatey(0deg);
+    }
+</style>
+<body>
+    <div class="box">
+        <ul class="menu">
+            <li>item</li>
+            <li>items</li>
+        </ul>
+    </div>
+</body>
+</html>
