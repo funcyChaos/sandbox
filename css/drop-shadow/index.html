@@ -5,16 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Drop Shadow</title>
     <style>
-        .box{
+        .box-shadow{
+            width: 100px;
+            height: 100px;
+            box-shadow: 0 0 8px black;
+            border-radius: 20px;
+            box-sizing: border-box;
+            border-top: 1px black solid;
+            margin-top: 30px;
+            margin-bottom: 30px;
+            margin-left: 100px;
+            padding: 10px;
+        }
+        .drop-shadow{
             width: 100px;
             height: 100px;
             background-color: white;
             filter: drop-shadow(0 0 4px black);
+            border-radius: 20px;
+            box-sizing: border-box;
+            border-top: 1px black solid;
+            margin-left: 100px;
+            padding: 10px;
+        }
+        .box-shadow:hover, .drop-shadow:hover{
+            width: 120px;
         }
     </style>
 </head>
 <body>
-    <div class="box">
+    <div class="box-shadow">
+        A box shadow
+    </div>
+    <div class="drop-shadow">
         Way better than box shadow
     </div>
 </body>
