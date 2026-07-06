@@ -1,0 +1,28 @@
+[Unit]
+Description=File Browser
+After=network.target
+
+[Service]
+User=filebrowser
+Group=filebrowser
+
+WorkingDirectory=/var/lib/filebrowser
+
+ExecStart=/usr/local/bin/filebrowser \
+    --database /var/lib/filebrowser/filebrowser.db \
+    --root /srv/files \
+    --address 127.0.0.1 \
+    --port 8080
+
+Restart=on-failure
+RestartSec=5
+
+# Security
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=yes
+ReadWritePaths=/srv/files /var/lib/filebrowser
+
+[Install]
+WantedBy=multi-user.target
