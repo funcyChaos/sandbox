@@ -18,7 +18,11 @@
     height: 500px;
     border: 2px solid grey;
 }
-
+body{height: 200dvh;}
+.sticky-container{
+  position: sticky;
+  top: 0;
+}
 .absolute-move{
   width: 50px;
   height: 50px;
@@ -27,7 +31,9 @@
   position: absolute;
   left: 0;
   top: 50px;
-  animation: move 1s infinite ease;
+  /* animation: move 10s infinite linear; */
+  animation: move linear forwards;
+  animation-timeline: scroll();
 }
 
 @keyframes move{
@@ -39,6 +45,9 @@
   }
   50%{
     top: 300px;
+  }
+  75%{
+    left:100px;
   }
   100%{
     left:400px;
