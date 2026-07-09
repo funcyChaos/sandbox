@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>intersection observer</title>
+</head>
+<style>
+    body{height: 250vh;}
+    .spacer{height: 100vh;}
+    .observed{
+        height: 100px;
+        width: 100px;
+        border: blue 1px dashed;
+        opacity: 0;
+        transition: opacity .5s ease;
+    }
+    .show{opacity: 1;}
+</style>
+<body>
+    <div class="spacer"></div>
+    <div class="observed"></div>
+    <div class="observed"></div>
+    <script>
+        const observer = new IntersectionObserver(entries=>{
+            entries.forEach(entry=>{
+                if(entry.isIntersecting){
+                    entry.target.classList.add('show')
+                }else{
+                    entry.target.classList.remove('show')
+                }
+            })
+        }, {threshold:0.5})
+        const observed = document.querySelectorAll('.observed')
+        observed.forEach(el=>{
+            observer.observe(el)
+        })
+        document.querySelectorAll('.card-container').forEach(el=>{
+            el.addEventListener('touchstart',e=>{
+                e.preventDefault()
+                el.classList.toggle('flip')
+            })
+        })
+    </script>
+</body>
+</html>
