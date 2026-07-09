@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hover Flip</title>
     <style>
+        body{height: 200dvh;}
+        .spacer{height: 100dvh;}
         .card-container{
             perspective: 1000px;
             width: 200px;
@@ -18,7 +20,12 @@
             transition: transform .5s ease;
             will-change: transform;
         }
-        .card-container:hover .card{
+        @media(hover:hover){
+            .card-container:hover .card{
+                transform:rotateY(180deg);
+            }
+        }
+        .card-container.flip .card{
             transform:rotateY(180deg);
         }
         .front,.back{
@@ -35,14 +42,41 @@
         .front{
             background-color: lightcoral;
         }
+        @keyframes wiggle{
+            0%, 100%{transform: rotateY(0deg);}
+            25%{transform: rotateY(-15deg);}
+            75%{transform: rotateY(15deg);}
+        }
+        .card-container.wiggle{
+            animation: wiggle 0.5s ease-in-out;
+        }
     </style>
 </head>
 <body>
-    <div class="card-container">
+    <div class="spacer"></div>
+    <div class="card-container" id="wiggle_me">
         <div class="card">
             <div class="front">Front</div>
             <div class="back">Back</div>
         </div>
     </div>
+    <script>
+        const observer = new IntersectionObserver(entries=>{
+            entries.forEach(entry=>{
+                if(entry.isIntersecting){
+                    entry.target.classList.add('wiggle')
+                }else{
+                    entry.target.classList.remove('wiggle')
+                }
+            })
+        }, {threshold:1.0})
+        observer.observe(document.getElementById('wiggle_me'))
+        document.querySelectorAll('.card-container').forEach(el=>{
+            el.addEventListener('touchstart',e=>{
+                e.preventDefault()
+                el.classList.toggle('flip')
+            })
+        })
+    </script>
 </body>
 </html>
