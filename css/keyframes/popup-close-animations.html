@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Popup Close Animations</title>
+</head>
+<style>
+    body{
+        margin: 0;
+        height: 100vh;
+        background-color: black;
+    }
+    .popup{
+        position: absolute;
+        left: 300px;
+        top: 200px;
+        height: 300px;
+        width: 200px;
+        background-color: gray;
+        transform-style: preserve-3d;
+    }
+    .popup.closing{
+        animation: magicCarpet .5s ease-in-out forwards;
+    }
+    @keyframes magicCarpet{
+        0%{
+            opacity: 1;
+        }
+        100%{
+            /* transform: perspective(300px) rotateY(-60deg) rotateX(40deg) translate3d(50px, -400px, -100px); */
+            /* transform: perspective(400px)  rotateX(20deg) rotateY(-70deg) rotateZ(45deg) translate3d(50px, -400px, -100px); */
+            transform: perspective(400px)  rotateX(20deg) rotateY(-70deg) rotateZ(45deg) translate3d(-100px, -400px, -20px);
+            opacity: 0;
+        }
+    }
+    /* Cool Closing State */
+    /* .popup.closing {
+    animation: snappyGlitchClose 1s cubic-bezier(0.85, 0, 0.15, 1) forwards;
+    }
+
+    @keyframes snappyGlitchClose {
+        0% {
+            transform: scale(1, 1);
+            filter: brightness(1);
+            opacity: 1;
+        }
+        40% {
+            transform: scale(1.1, 0.1);
+            filter: brightness(2);
+            opacity: 0.8;
+        }
+        100% {
+            transform: scale(0, 0);
+            filter: brightness(3);
+            opacity: 0;
+        }
+    } */
+
+    /* .popup.open {
+    animation: scaleUpOpen 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    } */
+
+    /* Cool Closing State */
+    /* .popup.closing {
+    animation: scaleDownSpinClose 0.3s ease-in forwards;
+    }
+
+    @keyframes scaleUpOpen {
+    from { transform: scale(0.7); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes scaleDownSpinClose {
+    from {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+    to {
+        transform: scale(0.5) rotate(-15deg);
+        opacity: 0;
+    }
+    } */
+
+     /* .popup.closing {
+  animation: slitDropClose 0.4s ease-in forwards;
+  transform-origin: 50% 100%;
+}
+
+@keyframes slitDropClose {
+  0% {
+    transform: translateZ(0) rotateX(0deg);
+    opacity: 1;
+  }
+  50% {
+    transform: translateZ(-250px) rotateX(-30deg);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateZ(-500px) rotateX(-90deg) translateY(100px);
+    opacity: 0;
+  }
+} */
+</style>
+<body>
+    <div class="popup"></div>
+    <script>
+        const popup = document.querySelector('.popup')
+        popup.addEventListener('click', e=>{
+            popup.classList.toggle('closing')
+        })
+    </script>
+</body>
+</html>
