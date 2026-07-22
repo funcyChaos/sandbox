@@ -4,51 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bouncy Button</title>
-    <!-- a{
-        /* position: relative; */
-        box-shadow: 0 0 0 var(--cta-stroke-width,0)var(--cta-stroke-color);
-        transform: translateY(0);
-        transition: transform .3s cubic-bezier(.5,2.5,.7,.7),box-shadow .3s cubic-bezier(.5,2.5,.7,.7);
-    }
-    a:hover{
--webkit-box-shadow: 0 0 0 var(--cta-stroke-width,0)var(--cta-stroke-color),0 var(--animation-depth,.375em)0 0 var(--cta-depth-color);
-box-shadow: 0 0 0 var(--cta-stroke-width,0)var(--cta-stroke-color),0 var(--animation-depth,.375em)0 0 var(--cta-depth-color);
--webkit-transform: translateY(calc(-1*var(--animation-depth,.375em)));
-transform: translateY(calc(-1*var(--animation-depth,.375em)));
-    } -->
     <style>
-        .ctaPrimary, .ctaSecondary {
-    cursor: pointer;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    --horizontal-padding: calc(24*.0625rem);
-    --vertical-padding: calc(12*.0625rem);
-    text-align: center;
-    box-sizing: border-box;
-    color: #231e15;
-    background: 0 0;
-    background: rgba(35,30,21,0);
-    font-family: Graphik Web,Helvetica Neue,Helvetica,Arial,Verdana,sans-serif;
-    /* padding: var(--vertical-padding)var(--horizontal-padding); */
-    border-radius: 30px;
-    -webkit-box-shadow: 0 0 0 calc(1*.0625rem) #231e15;
-    box-shadow: 0 0 0 calc(1*.0625rem) #231e15;
-    border: none;
-    text-decoration: none;
-    transition: transform .3s cubic-bezier(.5,2.5,.7,.7),box-shadow .3s cubic-bezier(.5,2.5,.7,.7);
-    display: inline-block;
-    position: relative;
-    transform: translateY(0);
-}
-.ctaPrimary:hover, .ctaSecondary:hover {
-    background: var(--cta-hovered-background-color,rgba(35,30,21,0));
-    color: var(--cta-hovered-text-color,#231e15);
-    -webkit-box-shadow: 0 0 0 calc(1*.0625rem) #231e15,0 var(--animation-depth,.375em)0 0 #231e15;
-    box-shadow: 0 0 0 calc(1*.0625rem) #231e15,0 var(--animation-depth,.375em)0 0 #231e15;
-    -webkit-transform: translateY(calc(-1*var(--animation-depth,.375em)));
-    -ms-transform: translateY(calc(-1*var(--animation-depth,.375em)));
-    transform: translateY(calc(-1*var(--animation-depth,.375em)));
-}
         .container{
             width: 300px;
             height: 300px;
@@ -56,11 +12,24 @@ transform: translateY(calc(-1*var(--animation-depth,.375em)));
             justify-content: center;
             align-items: center;
         }
+        .bouncyButton{
+            cursor: pointer;
+            text-align: center;
+            border-radius: 30px;
+            box-shadow: 0 0 0 .0635rem #231e15;
+            transition:
+                transform .3s cubic-bezier(.5,2.5,.7,.7),
+                box-shadow .3s cubic-bezier(.5,2.5,.7,.7);
+        }
+        .bouncyButton:hover{
+            box-shadow: 0 0 0 .0625rem #231e15,0 .375em 0 0 #231e15;
+            transform: translateY(-.375em);
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <a href="" class="ctaSecondary" style="padding: 20px;">hover over me</a>
+        <a href="" class="bouncyButton" style="padding: 20px;">hover over me</a>
     </div>
 </body>
 </html>
