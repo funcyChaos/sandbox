@@ -1,0 +1,42 @@
+:root {
+  --direction: -1;
+}
+
+@view-transition{
+    navigation: auto;
+}
+
+main.site{
+    background-color: gray;
+    view-transition-name: content;
+}
+
+::view-transition-old(content) {
+  animation: slide-out 0.5s cubic-bezier(0.86, 0, 0.07, 1) forwards;
+}
+
+::view-transition-new(content) {
+  animation: slide-in 0.5s cubic-bezier(0.86, 0, 0.07, 1) forwards;
+}
+
+@keyframes slide-out {
+  0% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(calc(50% * var(--direction)));
+  }
+}
+
+@keyframes slide-in {
+  0% {
+    opacity: 0;
+    transform: translateX(calc(-50% * var(--direction)));
+  }
+
+  100% {
+    transform: translateX(0%);
+  }
+}
