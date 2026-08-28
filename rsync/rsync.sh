@@ -42,3 +42,5 @@ rsync -av --partial --append-verify source/ dest/
 # ```
 
 # That’s especially useful for huge backups, VM images, datasets, or media files over unstable connections.
+
+rsync -avz --progress --rsync-path="runuser -u user -- rsync" source/ dest:dest/
