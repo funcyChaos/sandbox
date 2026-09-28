@@ -1,0 +1,36 @@
+#results{
+    transform: scaleY(0);
+    height: 0;
+    border: 1px green dashed;
+    overflow-y: scroll;
+}
+
+#results li{
+    height: 20px;
+    font-size: 20px;
+}
+
+#results.open{
+    animation: grow-into-view forwards ease .3s;
+}
+#results.close{
+    animation: shrink-out-of-view forwards ease .3s;
+}
+
+@keyframes grow-into-view{
+    to{
+        height: 100px;
+        transform: scaleY(1);
+    }
+}
+
+@keyframes shrink-out-of-view{
+    from{
+        height: 100px;
+        transform: scaleY(1);
+    }
+    to{
+        height: 0;
+        transform: scaleY(0);
+    }
+}
